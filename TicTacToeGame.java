@@ -17,6 +17,8 @@ public class TicTacToeGame {
 		else
 			compLetter = 'X';
 		System.out.println("Player: "+playerLetter+" Computer: "+compLetter);
+		System.out.println("Current Board: ");
+		showBoard(board);
 		in.close();
 	}
 	
@@ -24,7 +26,7 @@ public class TicTacToeGame {
 	 * @return
 	 * createBoard creates an empty board
 	 */
-	public static char[] createBoard()
+	private static char[] createBoard()
 	{
 		char board[] = new char[10];
 		for(char charValue : board)
@@ -36,7 +38,7 @@ public class TicTacToeGame {
 	 * @return
 	 * choose X or O
 	 */
-	public static char chooseLetter()
+	private static char chooseLetter()
 	{
 		char letterChoice; 
 		do
@@ -45,5 +47,20 @@ public class TicTacToeGame {
 			letterChoice = Character.toUpperCase(in.next().charAt(0));
 		} while(letterChoice!='X' && letterChoice!='O');
 		return letterChoice;
+	}
+	
+	/**
+	 * @param board
+	 * showBoard displays current board
+	 */
+	private static void showBoard(char board[])
+	{
+		for(int index=1; index<board.length; index++)
+		{
+			if(index%3==0)
+				System.out.println(board[index]);
+			else
+				System.out.print(board[index] + ",");
+		}
 	}
 }
