@@ -6,6 +6,7 @@ import java.util.*;
  * Tic Tac Toe Game Simulator
  */
 public class TicTacToeGame {
+	static Scanner in = new Scanner(System.in);
 	public static void main(String args[]) {
 		System.out.println("Welcome to Tic Tac Toe Game");
 		char board[] = createBoard();
@@ -16,6 +17,7 @@ public class TicTacToeGame {
 		else
 			compLetter = 'X';
 		System.out.println("Player: "+playerLetter+" Computer: "+compLetter);
+		in.close();
 	}
 	
 	/**
@@ -36,9 +38,12 @@ public class TicTacToeGame {
 	 */
 	public static char chooseLetter()
 	{
-		Scanner in = new Scanner(System.in);
-		System.out.print("Choose X or O: ");
-		char letterChoice = in.next().charAt(0);
+		char letterChoice; 
+		do
+		{
+			System.out.print("Choose X or O: ");
+			letterChoice = Character.toUpperCase(in.next().charAt(0));
+		} while(letterChoice!='X' && letterChoice!='O');
 		return letterChoice;
 	}
 }
