@@ -21,8 +21,8 @@ public class TicTacToeGame {
 		System.out.println("Current Board: ");
 		showBoard(board);
 		int tossWinner = toss();
-		board[1] = compLetter;
-		board[9] = compLetter;
+		board[1] = playerLetter;
+		board[2] = playerLetter;
 		makeCompMove(board);
 		showBoard(board);
 		gameStatus(board, compLetter);
@@ -158,8 +158,13 @@ public class TicTacToeGame {
 		return 1;
 	}
 	
+	/**
+	 * @param board
+	 * Make computer move
+	 */
 	private static void makeCompMove(char board[])
 	{
+		//make winning move
 		if(board[1]==compLetter && board[2]==compLetter && board[3]==' ')
 			board[3] = compLetter;
 		else if(board[1]==compLetter && board[2]==' ' && board[3]==compLetter)
@@ -208,5 +213,66 @@ public class TicTacToeGame {
 			board[5] = compLetter;
 		else if(board[3]==' ' && board[5]==compLetter && board[7]==compLetter)
 			board[3] = compLetter;
+		else
+			blockPlayerWin(board);
+	}
+	
+	/**
+	 * @param board
+	 * Make computer move to avoid player win
+	 */
+	private static char blockPlayerWin(char board[])
+	{
+		if(board[1]==playerLetter && board[2]==playerLetter && board[3]==' ')
+			board[3] = compLetter;
+		else if(board[1]==playerLetter && board[2]==' ' && board[3]==playerLetter)
+			board[2] = compLetter;
+		else if(board[1]==' ' && board[2]==playerLetter && board[3]==playerLetter)
+			board[1] = compLetter;
+		else if(board[4]==playerLetter && board[5]==playerLetter && board[6]==' ')
+			board[6] = compLetter;
+		else if(board[4]==playerLetter && board[5]==' ' && board[6]==playerLetter)
+			board[5] = compLetter;
+		else if(board[4]==' ' && board[5]==playerLetter && board[6]==playerLetter)
+			board[4] = compLetter;
+		else if(board[7]==playerLetter && board[8]==playerLetter && board[9]==' ')
+			board[9] = compLetter;
+		else if(board[7]==playerLetter && board[8]==' ' && board[9]==playerLetter)
+			board[8] = compLetter;
+		else if(board[7]==' ' && board[8]==playerLetter && board[9]==playerLetter)
+			board[7] = compLetter;
+		else if(board[1]==playerLetter && board[4]==playerLetter && board[7]==' ')
+			board[7] = compLetter;
+		else if(board[1]==playerLetter && board[4]==' ' && board[7]==playerLetter)
+			board[4] = compLetter;
+		else if(board[1]==' ' && board[4]==playerLetter && board[7]==playerLetter)
+			board[1] = compLetter;
+		else if(board[2]==playerLetter && board[5]==playerLetter && board[8]==' ')
+			board[8] = compLetter;
+		else if(board[2]==playerLetter && board[5]==' ' && board[8]==playerLetter)
+			board[5] = compLetter;
+		else if(board[2]==' ' && board[5]==playerLetter && board[8]==playerLetter)
+			board[2] = compLetter;
+		else if(board[3]==playerLetter && board[6]==playerLetter && board[9]==' ')
+			board[9] = compLetter;
+		else if(board[3]==playerLetter && board[6]==' ' && board[9]==playerLetter)
+			board[6] = compLetter;
+		else if(board[3]==' ' && board[6]==playerLetter && board[9]==playerLetter)
+			board[3] = compLetter;
+		else if(board[1]==playerLetter && board[5]==playerLetter && board[9]==' ')
+			board[9] = compLetter;
+		else if(board[1]==playerLetter && board[5]==' ' && board[9]==playerLetter)
+			board[5] = compLetter;
+		else if(board[1]==' ' && board[5]==playerLetter && board[9]==playerLetter)
+			board[1] = compLetter;
+		else if(board[3]==playerLetter && board[5]==playerLetter && board[7]==' ')
+			board[7] = compLetter;
+		else if(board[3]==playerLetter && board[5]==' ' && board[7]==playerLetter)
+			board[5] = compLetter;
+		else if(board[3]==' ' && board[5]==playerLetter && board[7]==playerLetter)
+			board[3] = compLetter;
+		else
+			return 'F';
+		return 'T';
 	}
 }
