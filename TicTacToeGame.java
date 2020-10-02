@@ -7,11 +7,12 @@ import java.util.*;
  */
 public class TicTacToeGame {
 	static Scanner in = new Scanner(System.in);
+	static char playerLetter;
+	static char compLetter;
 	public static void main(String args[]) {
 		System.out.println("Welcome to Tic Tac Toe Game");
 		char board[] = createBoard();
-		char playerLetter = chooseLetter();
-		char compLetter;
+		playerLetter = chooseLetter();
 		if(playerLetter=='X')
 			compLetter = 'O';
 		else
@@ -19,10 +20,7 @@ public class TicTacToeGame {
 		System.out.println("Player: "+playerLetter+" Computer: "+compLetter);
 		System.out.println("Current Board: ");
 		showBoard(board);
-		makePlayerMove(board, playerLetter);
-		showBoard(board);
-		makePlayerMove(board, playerLetter);
-		showBoard(board);
+		int tossWinner = toss();
 		in.close();
 	}
 	
@@ -103,5 +101,15 @@ public class TicTacToeGame {
 			return false;
 		else
 			return true;
+	}
+	
+	private static int toss()
+	{
+		int randomNo = (int) (Math.random()*10)%2;
+		if(randomNo==0)
+			System.out.println("User won the toss.");
+		else
+			System.out.println("Computer won the toss.");
+		return randomNo;
 	}
 }
