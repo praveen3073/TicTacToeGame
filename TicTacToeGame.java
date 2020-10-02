@@ -217,7 +217,10 @@ public class TicTacToeGame {
 		else
 		{
 			if(blockPlayerWin(board)=='F')
-				makeCompCornerMove(board);
+			{
+				if(makeCompCornerMove(board)=='F')
+					makeAvailableCompMove(board);
+			}
 		}
 	}
 	
@@ -280,6 +283,11 @@ public class TicTacToeGame {
 		return 'T';
 	}
 	
+	/**
+	 * @param board
+	 * @return
+	 * Make computer move to occupy corner
+	 */
 	private static char makeCompCornerMove(char board[])
 	{
 		if(isFreeIndex(board,1)==true)
@@ -293,6 +301,23 @@ public class TicTacToeGame {
 		else
 			return 'F';
 		return 'T';
-					
+	}
+	
+	/**
+	 * @param board
+	 * Make remaining available computer moves - center and sides
+	 */
+	private static void makeAvailableCompMove(char board[])
+	{
+		if(isFreeIndex(board,5)==true)
+			board[5] = compLetter;
+		else if(isFreeIndex(board,2)==true)
+			board[2] = compLetter;
+		else if(isFreeIndex(board,4)==true)
+			board[4] = compLetter;
+		else if(isFreeIndex(board,6)==true)
+			board[6] = compLetter;
+		else if(isFreeIndex(board,8)==true)
+			board[8] = compLetter;
 	}
 }
