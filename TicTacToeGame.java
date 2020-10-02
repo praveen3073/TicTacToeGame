@@ -18,15 +18,33 @@ public class TicTacToeGame {
 		else
 			compLetter = 'X';
 		System.out.println("Player: "+playerLetter+" Computer: "+compLetter);
-		System.out.println("Current Board: ");
+		System.out.println("Initial board: ");
 		showBoard(board);
-		int tossWinner = toss();
-		board[1] = playerLetter;
-		board[8] = playerLetter;
-		board[5] = compLetter;
-		makeCompMove(board);
-		showBoard(board);
-		gameStatus(board, compLetter);
+		int tossWinner = toss(); // user : 0 & computer : 1
+		switch(tossWinner)
+		{
+			case 0:
+				do
+				{
+					makePlayerMove(board);
+					showBoard(board);
+					if(isGameOver(gameStatus(board, playerLetter))==true)
+						break;
+					makeCompMove(board);
+					showBoard(board);
+				}while(isGameOver(gameStatus(board, compLetter))==false);
+				break;
+			case 1:
+				do
+				{
+					makeCompMove(board);
+					showBoard(board);
+					if(isGameOver(gameStatus(board, compLetter))==true)
+						break;
+					makePlayerMove(board);
+					showBoard(board);
+				}while(isGameOver(gameStatus(board, playerLetter))==false);
+		}
 		in.close();
 	}
 	
@@ -319,5 +337,21 @@ public class TicTacToeGame {
 			board[6] = compLetter;
 		else if(isFreeIndex(board,8)==true)
 			board[8] = compLetter;
+	}
+	
+	/**
+	 * @param gameStatusValue
+	 * @return
+	 * check if the game is over
+	 * gameStatusValue = -1, Game Won
+	 * gameStatusValue =  1, Board Full
+	 */
+	private static boolean isGameOver(int gameStatusValue)
+	{
+		if(gameStatusValue==-1 || gameStatusValue==1)
+			System.out.println("-----Game Over-----");
+		else
+			return false;
+		return true;
 	}
 }
