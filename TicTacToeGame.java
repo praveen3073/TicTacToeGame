@@ -11,41 +11,45 @@ public class TicTacToeGame {
 	static char compLetter;
 	public static void main(String args[]) {
 		System.out.println("Welcome to Tic Tac Toe Game");
-		char board[] = createBoard();
-		playerLetter = chooseLetter();
-		if(playerLetter=='X')
-			compLetter = 'O';
-		else
-			compLetter = 'X';
-		System.out.println("Player: "+playerLetter+" Computer: "+compLetter);
-		System.out.println("Initial board: ");
-		showBoard(board);
-		int tossWinner = toss(); // user : 0 & computer : 1
-		switch(tossWinner)
+		do
 		{
-			case 0:
-				do
-				{
-					makePlayerMove(board);
-					showBoard(board);
-					if(isGameOver(gameStatus(board, playerLetter))==true)
-						break;
-					makeCompMove(board);
-					showBoard(board);
-				}while(isGameOver(gameStatus(board, compLetter))==false);
-				break;
-			case 1:
-				do
-				{
-					makeCompMove(board);
-					showBoard(board);
-					if(isGameOver(gameStatus(board, compLetter))==true)
-						break;
-					makePlayerMove(board);
-					showBoard(board);
-				}while(isGameOver(gameStatus(board, playerLetter))==false);
-		}
+			char board[] = createBoard();
+			playerLetter = chooseLetter();
+			if(playerLetter=='X')
+				compLetter = 'O';
+			else
+				compLetter = 'X';
+			System.out.println("Player: "+playerLetter+" Computer: "+compLetter);
+			System.out.println("Initial board: ");
+			showBoard(board);
+			int tossWinner = toss(); // user : 0 & computer : 1
+			switch(tossWinner)
+			{
+				case 0:
+					do
+					{
+						makePlayerMove(board);
+						showBoard(board);
+						if(isGameOver(gameStatus(board, playerLetter))==true)
+							break;
+						makeCompMove(board);
+						showBoard(board);
+					}while(isGameOver(gameStatus(board, compLetter))==false);
+					break;
+				case 1:
+					do
+					{
+						makeCompMove(board);
+						showBoard(board);
+						if(isGameOver(gameStatus(board, compLetter))==true)
+							break;
+						makePlayerMove(board);
+						showBoard(board);
+					}while(isGameOver(gameStatus(board, playerLetter))==false);
+			}
+		}while(rematch()==true);
 		in.close();
+		System.out.println("-----Program Terminated-----");
 	}
 	
 	/**
@@ -353,5 +357,19 @@ public class TicTacToeGame {
 		else
 			return false;
 		return true;
+	}
+	
+	/**
+	 * @return
+	 * ask user for a rematch
+	 */
+	private static boolean rematch()
+	{
+		System.out.println("\nUp for a rematch? (y/n): ");
+		char choice = in.next().charAt(0);
+		if(choice=='y')
+			return true;
+		else
+			return false;
 	}
 }
